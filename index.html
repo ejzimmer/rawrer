@@ -1,0 +1,16 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <div id="tweets"></div>
+    <script>
+      const tweetsElement = document.getElementById('tweets');
+
+      fetch('/tweets')
+        .then((response) => response.json())
+        .then((tweets) => {
+          tweetsElement.innerHTML = tweets.map(tweet => JSON.stringify(tweet))
+        })
+    </script>
+  </body>
+</html>
