@@ -3,8 +3,8 @@ const Twit = require('twit')
 
 const app = express()
 
-const port = process.env.OPENSHIFT_NODEJS_PORT || 3000
-const ip = process.env.OPENSHIFT_NODEJS_IP || 'localhost'
+const port = '8080'
+const ip = 'localhost'
 
 app.use(express.static('.'))
 
