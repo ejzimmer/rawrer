@@ -3,6 +3,9 @@ const Twit = require('twit')
 
 const app = express()
 
+const port = process.env.OPENSHIFT_NODEJS_PORT || 3000
+const ip = process.env.OPENSHIFT_NODEJS_IP || 'localhost'
+
 app.use(express.static('.'))
 
 const client = new Twit({
@@ -20,4 +23,4 @@ app.get('/tweets', (req, res) => {
   })  
 })
 
-app.listen(3000, () => console.log('Example app listening on port 3000!'))
+app.listen(port, () => console.log(`Example app listening on ${ip}:${port}`))
