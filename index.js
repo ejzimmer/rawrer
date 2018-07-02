@@ -3,8 +3,7 @@ const Twit = require('twit')
 
 const app = express()
 
-const port = '8080'
-const ip = 'localhost'
+const port = 8080
 
 app.use(express.static('.'))
 
@@ -18,9 +17,9 @@ const client = new Twit({
 app.get('/', (req, res) => res.send('Hello World!'))
 
 app.get('/tweets', (req, res) => {
-  client.get('statuses/user_timeline', { screen_name: 'erinjzimmer' }, (err, data) => {
+  client.get('statuses/home_timeline', { screen_name: 'erinjzimmer' }, (err, data) => {
     res.send(data);
   })  
 })
 
-app.listen(port, () => console.log(`Example app listening on ${ip}:${port}`))
+app.listen(port, () => console.log(`Example app listening on port ${port}`))

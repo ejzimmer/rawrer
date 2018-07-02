@@ -1,5 +1,22 @@
 <html>
   <head>
+    <style>
+      body {
+        background: #333;
+        color: #ddd;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      }
+      ul {
+        list-style: none;
+      }
+      li {
+        border-radius: 5px;
+        box-shadow: 4px 4px 8px black;
+        border: 1px solid #111;
+        margin: 1em;
+        padding: 1em 2em;
+      }
+    </style>
   </head>
   <body>
     <div id="tweets"></div>
@@ -7,10 +24,14 @@
       const tweetsElement = document.getElementById('tweets');
 
       fetch('/tweets')
-        .then((response) => response.json())
-        .then((tweets) => {
-          tweetsElement.innerHTML = tweets.map(tweet => JSON.stringify(tweet))
-        })
+        .then(response => response.json())
+        .then(tweets => tweets.map(tweet => `<li>
+                                              <div>${tweet.user.name}</div>
+                                              <div>${tweet.user.screen_name}</div>
+                                              <div>${tweet.created_at}</div>
+                                              <div>${tweet.text}</div>
+                                            </li>`))
+        .then(listItems => tweetsElement.innerHTML = `<ul>${listItems.join('')}</ul>`)
     </script>
   </body>
 </html>
